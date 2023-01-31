@@ -122,12 +122,6 @@
 		brcm,pull =     <0 2 2 2 2 2>;
 	};
 
-	bt_pins: bt_pins {
-		brcm,pins = <43>;
-		brcm,function = <4>; /* alt0:GPCLK2 */
-		brcm,pull = <0>;
-	};
-
 	uart0_pins: uart0_pins {
 		brcm,pins = <32 33>;
 		brcm,function = <7>; /* alt3=UART0 */
@@ -154,10 +148,6 @@
 	#address-cells = <1>;
 	#size-cells = <0>;
 
-	brcmf: wifi@1 {
-		reg = <1>;
-		compatible = "brcm,bcm4329-fmac";
-	};
 };
 
 &firmware {
