@@ -26,11 +26,6 @@
 		};
 	};
 
-	wifi_pwrseq: wifi-pwrseq {
-		compatible = "mmc-pwrseq-simple";
-		reset-gpios = <&expgpio 1 GPIO_ACTIVE_LOW>;
-	};
-
 	sd_io_1v8_reg: sd_io_1v8_reg {
 		compatible = "regulator-gpio";
 		regulator-name = "vdd-sd-io";
@@ -198,13 +193,8 @@
 	pinctrl-0 = <&emmc_gpio34>;
 	bus-width = <4>;
 	non-removable;
-	mmc-pwrseq = <&wifi_pwrseq>;
 	status = "okay";
 
-	brcmf: wifi@1 {
-		reg = <1>;
-		compatible = "brcm,bcm4329-fmac";
-	};
 };
 
 /* EMMC2 is used to drive the EMMC card */
@@ -247,11 +237,6 @@
 	uart-has-rtscts;
 	status = "okay";
 
-	bluetooth {
-		compatible = "brcm,bcm43438-bt";
-		max-speed = <2000000>;
-		shutdown-gpios = <&expgpio 0 GPIO_ACTIVE_HIGH>;
-	};
 };
 
 /* uart1 is mapped to the pin header */
@@ -454,13 +439,6 @@
 		brcm,pins =     <34 35 36 37 38 39>;
 		brcm,function = <BCM2835_FSEL_ALT3>; // alt3 = SD1
 		brcm,pull =     <0 2 2 2 2 2>;
-	};
-
-	bt_pins: bt_pins {
-		brcm,pins = "-"; // non-empty to keep btuart happy, //4 = 0
-				 // to fool pinctrl
-		brcm,function = <0>;
-		brcm,pull = <2>;
 	};
 
 	uart0_pins: uart0_pins {
