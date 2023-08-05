@@ -120,12 +120,6 @@
 		brcm,pull =     <0 2 2 2 2 2>;
 	};
 
-	bt_pins: bt_pins {
-		brcm,pins = <43>;
-		brcm,function = <4>; /* alt0:GPCLK2 */
-		brcm,pull = <0>;
-	};
-
 	uart0_pins: uart0_pins {
 		brcm,pins = <30 31 32 33>;
 		brcm,function = <7>; /* alt3=UART0 */
@@ -151,24 +145,6 @@
 	status = "okay";
 	#address-cells = <1>;
 	#size-cells = <0>;
-
-	brcmf: wifi@1 {
-		reg = <1>;
-		compatible = "brcm,bcm4329-fmac";
-
-		firmwares {
-			fw_43436p {
-				chipid = <43430>;
-				revmask = <4>;
-				fw_base = "brcm/brcmfmac43436-sdio";
-			};
-			fw_43436s {
-				chipid = <43430>;
-				revmask = <2>;
-				fw_base = "brcm/brcmfmac43436s-sdio";
-			};
-		};
-	};
 };
 
 &uart0 {
@@ -240,14 +216,6 @@
 	pinctrl-names = "default";
 	pinctrl-0 = <&audio_pins>;
 	brcm,disable-headphones = <1>;
-};
-
-&bt {
-	shutdown-gpios = <&gpio 42 GPIO_ACTIVE_HIGH>;
-};
-
-&minibt {
-	shutdown-gpios = <&gpio 42 GPIO_ACTIVE_HIGH>;
 };
 
 &cam1_reg {
